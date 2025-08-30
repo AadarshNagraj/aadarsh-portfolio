@@ -1,17 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nostalgia Box | Relive the 80s & 90s</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <h1>Welcome to My Website</h1>
-  <p>This is a basic setup. Content will be added later.</p>
+    <!-- CRT Scanline Overlay -->
+    <div class="crt-overlay"></div>
 
-  <button onclick="showMessage()">Click Me</button>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" data-text="NOSTALGIA_BOX">NOSTALGIA_BOX</a>
+            <div class="nav-menu">
+                <a href="movies.html" class="nav-link">Movies</a>
+                <a href="games.html" class="nav-link">Games</a>
+                <a href="music.html" class="nav-link">Music</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
 
-  <script src="script.js"></script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title glitch" data-text="WELCOME_TO_THE_PAST">WELCOME_TO_THE_PAST</h1>
+            <p class="hero-subtitle">Rediscover the magic of 80s & 90s entertainment</p>
+            <div class="hero-buttons">
+                <a href="#explore" class="btn btn-primary">Explore Now</a>
+                <a href="about.html" class="btn btn-secondary">About Us</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="cassette-tape"></div>
+        </div>
+    </section>
+
+    <!-- Explore Section -->
+    <section id="explore" class="explore">
+        <h2 class="section-title">Choose Your Time Machine</h2>
+        <div class="categories">
+            <div class="category-card" onclick="location.href='movies.html'">
+                <div class="category-icon">
+                    <i class="fas fa-film"></i>
+                </div>
+                <h3>Movie Vault</h3>
+                <p>Relive classic cinema from the golden era</p>
+            </div>
+            
+            <div class="category-card" onclick="location.href='games.html'">
+                <div class="category-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Arcade Games</h3>
+                <p>Play the classics that defined gaming</p>
+            </div>
+            
+            <div class="category-card" onclick="location.href='music.html'">
+                <div class="category-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3>Mixtape</h3>
+                <p>Listen to the greatest hits of all time</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2023 Nostalgia Box. Made with <i class="fas fa-heart"></i> for the 90s kids</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
