@@ -3,83 +3,726 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nostalgia Box | Relive the 80s & 90s</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <title>Nostalgia Box - Indian Classics</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #e50914;
+            --dark: #141414;
+            --light: #f5f5f1;
+            --gray: #808080;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo i {
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary);
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: 1px solid var(--gray);
+            border-radius: 4px;
+            color: var(--light);
+            padding: 8px 12px;
+            width: 220px;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            width: 260px;
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .user-profile {
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .user-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            position: relative;
+            margin-bottom: 40px;
+            background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%), url('https://images.unsplash.com/photo-1535016120720-40c646be5580?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            padding: 0 60px;
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            margin-bottom: 24px;
+            color: #ccc;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #f40612;
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Content Sections */
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 20px 40px;
+            display: inline-block;
+        }
+
+        .see-all {
+            color: var(--gray);
+            font-size: 14px;
+            margin-left: 15px;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .see-all:hover {
+            color: var(--primary);
+        }
+
+        .content-row {
+            position: relative;
+            padding: 0 40px;
+            margin-bottom: 40px;
+        }
+
+        .content-cards {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .content-cards::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card {
+            min-width: 250px;
+            height: 150px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 20px 10px 10px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .card:hover .card-overlay {
+            opacity: 1;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card-info {
+            font-size: 12px;
+            color: var(--gray);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Video Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            width: 80%;
+            max-width: 900px;
+            background-color: var(--dark);
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 20px;
+        }
+
+        .video-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .video-description {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 40px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-heading {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            color: var(--light);
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .search-box input {
+                width: 150px;
+            }
+            
+            .hero-content {
+                padding: 0 20px;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .section-title, .content-row {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            
+            .card {
+                min-width: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- CRT Scanline Overlay -->
-    <div class="crt-overlay"></div>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo" data-text="NOSTALGIA_BOX">NOSTALGIA_BOX</a>
-            <div class="nav-menu">
-                <a href="movies.html" class="nav-link">Movies</a>
-                <a href="games.html" class="nav-link">Games</a>
-                <a href="music.html" class="nav-link">Music</a>
-                <a href="about.html" class="nav-link">About</a>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-film"></i>
+            <span>Nostalgia Box</span>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">TV Shows</a></li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Collections</a></li>
+            </ul>
+        </nav>
+        
+        <div class="user-actions">
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
             </div>
-            <div class="nav-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <div class="user-profile">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=464&q=80" alt="User">
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title glitch" data-text="WELCOME_TO_THE_PAST">WELCOME_TO_THE_PAST</h1>
-            <p class="hero-subtitle">Rediscover the magic of 80s & 90s entertainment</p>
-            <div class="hero-buttons">
-                <a href="#explore" class="btn btn-primary">Explore Now</a>
-                <a href="about.html" class="btn btn-secondary">About Us</a>
+            <div class="hero-badge">90s Classic</div>
+            <h1 class="hero-title">Dilwale Dulhania Le Jayenge</h1>
+            <p class="hero-description">Raj and Simran meet during a trip across Europe and fall in love. However, when Simran's father learns of their relationship, he rejects Raj and takes Simran back to India for an arranged marriage.</p>
+            <div class="hero-actions">
+                <button class="btn btn-primary" onclick="openVideo('dDLJ', 'Dilwale Dulhania Le Jayenge')">
+                    <i class="fas fa-play"></i> Play
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i> More Info
+                </button>
             </div>
-        </div>
-        <div class="hero-image">
-            <div class="cassette-tape"></div>
         </div>
     </section>
 
-    <!-- Explore Section -->
-    <section id="explore" class="explore">
-        <h2 class="section-title">Choose Your Time Machine</h2>
-        <div class="categories">
-            <div class="category-card" onclick="location.href='movies.html'">
-                <div class="category-icon">
-                    <i class="fas fa-film"></i>
+    <!-- Content Sections -->
+    <section>
+        <h2 class="section-title">Bollywood Classics <a href="#" class="see-all">See All</a></h2>
+        <div class="content-row">
+            <div class="content-cards">
+                <div class="card" onclick="openVideo('qN3wuyePYXQ', 'Sholay')">
+                    <img src="https://images.unsplash.com/photo-1616091724557-9724cdfc6fe0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Sholay">
+                    <div class="card-overlay">
+                        <div class="card-title">Sholay</div>
+                        <div class="card-info">
+                            <span>1975</span>
+                            <span>Action</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Movie Vault</h3>
-                <p>Relive classic cinema from the golden era</p>
-            </div>
-            
-            <div class="category-card" onclick="location.href='games.html'">
-                <div class="category-icon">
-                    <i class="fas fa-gamepad"></i>
+                <div class="card" onclick="openVideo('y2DIB3nRrCI', 'Dil To Pagal Hai')">
+                    <img src="https://images.unsplash.com/photo-1585951237318-9ea5e175b891?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Dil To Pagal Hai">
+                    <div class="card-overlay">
+                        <div class="card-title">Dil To Pagal Hai</div>
+                        <div class="card-info">
+                            <span>1997</span>
+                            <span>Romance</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Arcade Games</h3>
-                <p>Play the classics that defined gaming</p>
-            </div>
-            
-            <div class="category-card" onclick="location.href='music.html'">
-                <div class="category-icon">
-                    <i class="fas fa-music"></i>
+                <div class="card" onclick="openVideo('6S9c5nnD78c', 'Kabhi Khushi Kabhie Gham')">
+                    <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Kabhi Khushi Kabhie Gham">
+                    <div class="card-overlay">
+                        <div class="card-title">Kabhi Khushi Kabhie Gham</div>
+                        <div class="card-info">
+                            <span>2001</span>
+                            <span>Drama</span>
+                        </div>
+                    </div>
                 </div>
-                <h3>Mixtape</h3>
-                <p>Listen to the greatest hits of all time</p>
+                <div class="card" onclick="openVideo('o2mMLp8oQ_c', 'Lagaan')">
+                    <img src="https://images.unsplash.com/photo-1598890777032-9c70ccade3da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Lagaan">
+                    <div class="card-overlay">
+                        <div class="card-title">Lagaan</div>
+                        <div class="card-info">
+                            <span>2001</span>
+                            <span>Sports Drama</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="openVideo('xpaK7mnmM6k', 'Devdas')">
+                    <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Devdas">
+                    <div class="card-overlay">
+                        <div class="card-title">Devdas</div>
+                        <div class="card-info">
+                            <span>2002</span>
+                            <span>Romance</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <section>
+        <h2 class="section-title">Regional Classics <a href="#" class="see-all">See All</a></h2>
+        <div class="content-row">
+            <div class="content-cards">
+                <div class="card" onclick="openVideo('dDLJ', 'Nayakan')">
+                    <img src="https://images.unsplash.com/photo-1609743978914-ed9c27c5f5be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Nayakan">
+                    <div class="card-overlay">
+                        <div class="card-title">Nayakan</div>
+                        <div class="card-info">
+                            <span>1987</span>
+                            <span>Tamil</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="openVideo('dDLJ', 'Pushpaka Vimana')">
+                    <img src="https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=876&q=80" alt="Pushpaka Vimana">
+                    <div class="card-overlay">
+                        <div class="card-title">Pushpaka Vimana</div>
+                        <div class="card-info">
+                            <span>1987</span>
+                            <span>Kannada</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="openVideo('dDLJ', 'Manichitrathazhu')">
+                    <img src="https://images.unsplash.com/photo-1616530940355-351fabdca336?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=435&q=80" alt="Manichitrathazhu">
+                    <div class="card-overlay">
+                        <div class="card-title">Manichitrathazhu</div>
+                        <div class="card-info">
+                            <span>1993</span>
+                            <span>Malayalam</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="openVideo('dDLJ', 'Saptapadi')">
+                    <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Saptapadi">
+                    <div class="card-overlay">
+                        <div class="card-title">Saptapadi</div>
+                        <div class="card-info">
+                            <span>1981</span>
+                            <span>Bengali</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" onclick="openVideo('dDLJ', 'Mayabazar')">
+                    <img src="https://images.unsplash.com/photo-1543536448-d209d2d13a1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" alt="Mayabazar">
+                    <div class="card-overlay">
+                        <div class="card-title">Mayabazar</div>
+                        <div class="card-info">
+                            <span>1957</span>
+                            <span>Telugu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeVideo()">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="video-container">
+                <iframe id="ytplayer" width="100%" height="100%" src="about:blank" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class="video-info">
+                <h2 class="video-title" id="videoTitle"></h2>
+                <p class="video-description" id="videoDescription"></p>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2023 Nostalgia Box. Made with <i class="fas fa-heart"></i> for the 90s kids</p>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-heading">Nostalgia Box</h3>
+                <p>Relive the golden era of Indian cinema with our curated collection of classic films.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">TV Shows</a></li>
+                    <li><a href="#">Collections</a></li>
+                    <li><a href="#">My List</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-heading">Genres</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Romance</a></li>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Comedy</a></li>
+                    <li><a href="#">Drama</a></li>
+                    <li><a href="#">Musicals</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3 class="footer-heading">Help</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Account</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Nostalgia Box. All rights reserved.</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Video modal functions
+        function openVideo(videoId, title) {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('ytplayer');
+            const videoTitle = document.getElementById('videoTitle');
+            
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            videoTitle.textContent = title;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('ytplayer');
+            
+            iframe.src = 'about:blank';
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideo();
+            }
+        });
+    </script>
 </body>
 </html>
